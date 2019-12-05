@@ -42,10 +42,6 @@ screen uwsgi --socket 127.0.0.1:4301 --wsgi-file /home/student/projects/final/ty
 - Be sure to do "Ctrl-a Ctrl-d" to run the screens in the background. 
 ## Left To Do:
 
-- Query String
-  - As the site is right now, the APIs return the entire database and NOT based on a Query String.
-  - We need to change the logic of the API pages and the html pages to accommodate Query Strings.
-
 - Styling
   - The website is made with vanilla HTML. No CSS is currently added to the sites. 
   - The	main site is very simple with just 2 links to both sites. We need to make it more interesting.
