@@ -8,7 +8,6 @@ import codecs;
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'application/json')])
-    x = 'GENERATIONS'
 
     creds = { 'user': 'pokemon',
               'password':'Pa$$w0rd',
@@ -17,12 +16,21 @@ def application(env, start_response):
 
     cnx = mysql.connector.connect(**creds)
     cursor = cnx.cursor(dictionary = True)
-
-    cursor.execute('SELECT * FROM Pokemon_Type;')
-    x = cursor.fetchall()
-
-    x = simplejson.dumps(x)
-
+    if(env['QUERY_STRING'] != ''):
+        types = env['QUERY_STRING']
+        types = types.split('=')
+        types = types[1]
+        print(types)
+        command = 'SELECT * FROM Pokemon_Type WHERE Types = \'' +str(types)+ '\';'
+        cursor.execute(command)
+        x = cursor.fetchall()
+        
+        x = simplejson.dumps(x)
+    else:
+        cursor.execute('SELECT * FROM Pokemon_Type;')
+        x = cursor.fetchall()
+        x = simplejson.dumps(x)
+        
     return x.encode()
 
 

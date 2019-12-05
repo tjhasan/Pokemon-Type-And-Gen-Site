@@ -55,7 +55,7 @@
 
       <br>
 
-      <input type="button" value="testing the data retrieve" onclick="btnClick()">
+      <input type="button" value="tester"onclick="btnClick()">
 
     </form>
     
@@ -63,18 +63,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script>
       function btnClick(){
-         $.getJSON("http://172.17.152.127/types/", processData);   
+         $.getJSON("http://172.17.152.127/types/?op1="+$('#op1').val(), processData);   
       }
       
       function processData(result){
-         var x = $('#op1').val();
          var y = $('#op2').val();
          $.each(result, function(i, item){
-            if(item.Types == x)
-            {
-               var eff = item[y];
-               document.getElementById("post").innerHTML = eff; 
-            }
+            var eff = item[y];
+            document.getElementById("post").innerHTML = eff; 
          })
       }
     </script>
