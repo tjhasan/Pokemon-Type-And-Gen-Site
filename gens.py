@@ -17,11 +17,22 @@ def application(env, start_response):
     
     cnx = mysql.connector.connect(**creds)
     cursor = cnx.cursor(dictionary = True)
+    if(env['QUERY_STRING'] != ''):
+        types = env['QUERY_STRING']
+        types = types.split('=')
+        types = types[1]
+        print(types)
+        
+        cursor.execute('SELECT * FROM Pokemon_Games WHERE GenNumber = '+ types +';')    
+        x = cursor.fetchall()
+        x = simplejson.dumps(x)
 
-    cursor.execute('SELECT * FROM Pokemon_Games;')    
-    x = cursor.fetchall()
+        return x.encode()
 
-    x = simplejson.dumps(x)
-    
-    return x.encode()
+    else:
+        cursor.execute('SELECT * FROM Pokemon_Games;')
+        x = cursor.fetchall()
+        x = simplejson.dumps(x)
+
+        return x.encode()
     

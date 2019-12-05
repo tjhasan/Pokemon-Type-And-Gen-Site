@@ -27,16 +27,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
       function btnClick(){
-         $.getJSON("http://172.17.152.127/gens/", processData);
+         $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
          document.getElementById("post").innerHTML = "";
       }
 
       function processData(result){
-         var x = $('#op1').val();
          $.each(result, function(i, item){
-           if(item.GenNumber == x) {
-                $("#post").append(["<img src="+item.GameImage+">"]);
-            }
+            $("#post").append(["<img src="+item.GameImage+">"]);
          })
       }
     </script>
