@@ -55,19 +55,19 @@
 
       <br>
 
-      <input type="button" value="tester"onclick="btnClick()">
+      <input type="button" value="Submit" onclick="btnClick()">
 
     </form>
     
     <p id="post"></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script>
-      function btnClick(){
+      function btnClick(){<!--Query String is depended on the users submission-->
          $.getJSON("http://172.17.152.127/types/?op1="+$('#op1').val(), processData);   
       }
       
       function processData(result){
-         var y = $('#op2').val();
+         var y = $('#op2').val(); <!--Gets the second value from the submission for comparisons-->
          $.each(result, function(i, item){
             var eff = item[y];
             document.getElementById("post").innerHTML = eff; 

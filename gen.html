@@ -18,7 +18,7 @@
         <option value="7">Generation 7</option>
         <option value="8">Generation 8</option>
       </select>
-      <input type="button" value="testing the data retrieve" onclick="btnClick()">  
+      <input type="button" value="Submit" onclick="btnClick()">  
     </form>
     
     <div id="post">
@@ -26,13 +26,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-      function btnClick(){
+      function btnClick(){<!--The JSON object depends on the query string which is generated via the submited form -->
          $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
-         document.getElementById("post").innerHTML = "";
+         document.getElementById("post").innerHTML = "";<!--This clears the #post div for the new information -->
       }
 
       function processData(result){
-         $.each(result, function(i, item){
+         $.each(result, function(i, item){<!--Gets the image of the generation that the user submitted-->
             $("#post").append(["<img src="+item.GameImage+">"]);
          })
       }

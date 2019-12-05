@@ -17,7 +17,7 @@ def application(env, start_response):
     
     cnx = mysql.connector.connect(**creds)
     cursor = cnx.cursor(dictionary = True)
-    if(env['QUERY_STRING'] != ''):
+    if(env['QUERY_STRING'] != ''): #If the query string isn't empty then we do a seperate SQL Query for that specific value
         types = env['QUERY_STRING']
         types = types.split('=')
         types = types[1]
@@ -29,7 +29,7 @@ def application(env, start_response):
 
         return x.encode()
 
-    else:
+    else: #Otherwise the entire database is returned
         cursor.execute('SELECT * FROM Pokemon_Games;')
         x = cursor.fetchall()
         x = simplejson.dumps(x)
