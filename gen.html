@@ -6,6 +6,7 @@
   </head>
 
   <body>
+    <a href="index.html">Home</a>
     <form>
       <label>Choose A Generation:</label>
       <select id="op1">
@@ -33,7 +34,7 @@
 
       function processData(result){
          $.each(result, function(i, item){<!--Gets the image of the generation that the user submitted-->
-            $("#post").append(["<img src="+item.GameImage+">"]);
+            $("#post").append(["<img src="+item.GameImage+">"]); <!--Images are hosted locally-->
          })
       }
     </script>

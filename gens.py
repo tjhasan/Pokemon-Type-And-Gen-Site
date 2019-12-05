@@ -8,7 +8,6 @@ import codecs;
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'application/json')])
-    x = 'GENERATIONS'
     
     creds = { 'user': 'pokemon',
               'password':'Pa$$w0rd',
@@ -21,7 +20,6 @@ def application(env, start_response):
         types = env['QUERY_STRING']
         types = types.split('=')
         types = types[1]
-        print(types)
         
         cursor.execute('SELECT * FROM Pokemon_Games WHERE GenNumber = '+ types +';')    
         x = cursor.fetchall()
@@ -29,7 +27,7 @@ def application(env, start_response):
 
         return x.encode()
 
-    else: #Otherwise the entire database is returned
+    else: #Otherwise the entire table is returned
         cursor.execute('SELECT * FROM Pokemon_Games;')
         x = cursor.fetchall()
         x = simplejson.dumps(x)
