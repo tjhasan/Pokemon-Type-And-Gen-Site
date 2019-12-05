@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Final Project</title>
+  </head>
+  
+  <body>
+    <form>
+      <label>Attacking Type:</label>    
+      <select id="op1">
+	<option value="Ghost">Ghost</option>
+	<option value="Dark">Dark</option>
+	<option value="Poison">Poison</option>
+	<option value="Electric">Electric</option>
+        <option value="Normal">Normal</option>
+        <option value="Fire">Fire</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Flying">Flying</option>
+        <option value="Ice">Ice</option>
+        <option value="Dragon">Dragon</option>
+        <option value="Water">Water</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Steel">Steel</option>
+        <option value="Rock">Rock</option>
+        <option value="Fairy">Fairy</option>
+        <option value="Grass">Grass</option>
+        <option value="Bug">Bug</option>
+        <option value="Ground">Ground</option>
+      </select>
+
+      <br>
+
+      <label>Defending Type:</label>
+      <select id="op2">
+        <option value="Ghost">Ghost</option>
+        <option value="Dark">Dark</option>
+        <option value="Poison">Poison</option>
+        <option value="Electric">Electric</option>
+        <option value="Normal">Normal</option>
+        <option value="Fire">Fire</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Flying">Flying</option>
+        <option value="Ice">Ice</option>
+        <option value="Dragon">Dragon</option>
+        <option value="Water">Water</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Steel">Steel</option>
+        <option value="Rock">Rock</option>
+        <option value="Fairy">Fairy</option>
+        <option value="Grass">Grass</option>
+        <option value="Bug">Bug</option>
+        <option value="Ground">Ground</option>
+      </select>
+
+      <br>
+
+      <input type="button" value="testing the data retrieve" onclick="btnClick()">
+
+    </form>
+    
+    <p id="post"></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script>
+      function btnClick(){
+         $.getJSON("http://172.17.152.127/types/", processData);   
+      }
+      
+      function processData(result){
+         var x = $('#op1').val();
+         var y = $('#op2').val();
+         $.each(result, function(i, item){
+            if(item.Types == x)
+            {
+               var eff = item[y];
+               document.getElementById("post").innerHTML = eff; 
+            }
+         })
+      }
+    </script>
+  </body>    
+</html>
