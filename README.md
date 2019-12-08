@@ -51,7 +51,7 @@ create database Pokemon
 ```
 - The contents of "Pokemon.sql" contains the code for setting up the tables. Copy all of it and then login to mysql, switch to the Pokemon database, and paste it. 
 
--The contents of "commands.txt" will populate the newly created tables with values. Again, copy all of it and then login to mysql, switch to the Pokemon database and paste it. 
+- The contents of "commands.txt" will populate the newly created tables with values. Again, copy all of it and then login to mysql, switch to the Pokemon database and paste it. 
 
 ## Left To Do:
 
