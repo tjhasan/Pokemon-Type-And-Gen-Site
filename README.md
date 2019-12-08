@@ -40,6 +40,18 @@ screen uwsgi --socket 127.0.0.1:4301 --wsgi-file /home/student/projects/final/ty
 
 ```
 - Be sure to do "Ctrl-a Ctrl-d" to run the screens in the background. 
+
+## Setting Up Database:
+
+- Login to mysql on the command line and create the database if you haven't already:
+
+```
+create database Pokemon
+
+```
+- The contents of "Pokemon.sql" contains the code for setting up the tables. Copy all of it and then login to mysql, switch to the Pokemon database, and paste it. 
+-The contents of "commands.txt" will populate the newly created tables with values. Again, copy all of it and then login to mysql, switch to the Pokemon database and paste it. 
+
 ## Left To Do:
 
 - Styling
