@@ -7,6 +7,7 @@
   
   <body>
     <a href="index.html">Home</a>
+    <!--Form to select attacking and defending types-->
     <form>
       <label>Attacking Type:</label>    
       <select id="op1">
@@ -63,12 +64,12 @@
     <p id="post"></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script>
-      function btnClick(){<!--Query String is depended on the users submission-->
+      function btnClick(){<!--Sends request containing attacking type (first) from user's submission-->
          $.getJSON("http://172.17.152.127/types/?op1="+$('#op1').val(), processData);   
       }
       
       function processData(result){
-         var y = $('#op2').val(); <!--Gets the second value from the submission for comparisons-->
+         var y = $('#op2').val(); <!--Compares defending type (second) to the API result-->
          $.each(result, function(i, item){
             var eff = item[y];
             document.getElementById("post").innerHTML = eff; 

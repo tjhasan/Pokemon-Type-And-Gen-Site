@@ -7,6 +7,7 @@
 
   <body>
     <a href="index.html">Home</a>
+    <!--Form to select generation to view-->
     <form>
       <label>Choose A Generation:</label>
       <select id="op1">
@@ -27,7 +28,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-      function btnClick(){<!--The JSON object depends on the query string which is generated via the submited form -->
+      function btnClick(){<!--Sends request containing generation from user's submission-->
          $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
          document.getElementById("post").innerHTML = "";<!--This clears the #post div for the new information -->
       }
