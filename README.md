@@ -1,68 +1,39 @@
 # 4300Final
 
-The code in this project wont run unless you have the following things setup first:
+The following Readme provides detailed documentation on what our HTML and APIs do, as well as how to utilize each of them.
 
-- Be sure that the following location is setup in the /etc/nginx/nginx.conf file
-```
-        location ^~ /types/ {
-            include uwsgi_params;
-            uwsgi_pass 127.0.0.1:4301;
-         }
+*HTML*
+-index.html:
+	-URI: http://172.17.152.127/final/
+	-This is our home page, which has 2 buttons. One leads to our type advantage calculator, and the other leads to our generation game finder. 
 
-        location ^~ /gens/ {
-            include uwsgi_params;
-            uwsgi_pass 127.0.0.1:1234;
-         }
+-typeAdv.html
+	-URI: http://172.17.152.127/final/typeAdv.html
+	-This page is our type advantage calculator. The user is allowed to choose between the provided types in the dropdown menues and given the corresponding effectivness of the attacking move against the defending one.
+	-For example, selecting Ghost and Ghost will result in a super-effective attack. However, Fighting against Ghost will result in no effect
+	-The attacking option that is chosen here sends a request to types.py with the query string "?op1=" and the name of the associating type (i.e chosing Ghost will append "Ghost" to the query string, Dark will append "Dark", etc)
 
-        location ^~ /final/ {
-            index index.html;
-            alias /home/student/projects/final/;
-        }
+-gen.html
+	-URI: http://172.17.152.127/final/gen.html
+	-This page is for our Pokemon generational library which will display specific games depending on the chosen generation.
+	-For example, selecting Generation 8 will result in the box art for Pokemon Sword and Pokemon Shield to be displayed.
+	-The option that is chosen here sends a request to gens.py with the query string "?op1=" and the associating number (i.e Generation 1 will add "1" to the query string, Generation 2 will add "2", etc)
 
-```
+*API*
+-gens.py
+	-URI: http://172.17.152.127/gens/
+	-This python application returns JSON data to the user. If no query string is specified, then the entire table is returned. 
+	-If a query string is specified then it will return only the specified portion of the table.
+	-The argument "op1" is taken with any of the following values: 1, 2, 3, 4, 5 ,6 ,7 ,8
+	-Example:
+		http://172.17.152.127/gens/?op1=3 => Will return only items with GenNumber = 3
+		http://172.17.152.127/gens/ => Will return entire table regardless of GenNumber
 
-- Be sure that the project directory is located in the following structure:
-```
-/home/student/projects/final
-```
-
-- In order to get the APIs running for the html file to pull from, you need to run the following commands:
-```
-
-Command to run gens:
-
-screen uwsgi --socket 127.0.0.1:1234 --wsgi-file /home/student/projects/final/gens.py --master
-
-
-Command to run types:
-
-screen uwsgi --socket 127.0.0.1:4301 --wsgi-file /home/student/projects/final/types.py --master
-
-```
-- Be sure to do "Ctrl-a Ctrl-d" to run the screens in the background. 
-
-## Setting Up Database:
-
-- Login to mysql on the command line and create the database if you haven't already:
-
-```
-create database Pokemon
-
-```
-- The contents of "Pokemon.sql" contains the code for setting up the tables. Copy all of it and then login to mysql, switch to the Pokemon database, and paste it. 
-
-- The contents of "commands.txt" will populate the newly created tables with values. Again, copy all of it and then login to mysql, switch to the Pokemon database and paste it. 
-
-## Left To Do:
-
-- Styling
-  - The website is made with vanilla HTML. No CSS is currently added to the sites. 
-  - The	main site is very simple with just 2 links to both sites. We need to make it more interesting.
-  - The	images on the generations page are all different sizes. We need to standardize all the sizes.
-
-- Documentation
-  - According to the final project document, we need to have the following documentation:
-    - The URI and purpose of each HTML page
-    - The URI and purpose of each API, including the query string parameters expected and how they are used.
-
-
+-types.py
+	-URI: http://172.17.152.127/types/
+	-This python application returns JSON data to the user. If no query string is specified, then the entire table is returned.
+        -If a query string is specified then it will return only the specified portion of the table.
+	-The argument "op1" is taken with any of the following values: Ghost, Dark, Poison, Electric, Normal, Fire, Psychic, Flying, Ice, Dragon, Water, Fighting, Steel, Rock, Fairy, Grass, Bug, or Ground.
+	 -Example:
+                http://172.17.152.127/types/?op1=Ghost => Will return only rows with Types = Ghost
+                http://172.17.152.127/gens/ => Will return entire table regardless of Types
