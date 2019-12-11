@@ -36,4 +36,4 @@ The following Readme provides detailed documentation on what our HTML and APIs d
 	-The argument "op1" is taken with any of the following values: Ghost, Dark, Poison, Electric, Normal, Fire, Psychic, Flying, Ice, Dragon, Water, Fighting, Steel, Rock, Fairy, Grass, Bug, or Ground.
 	 -Example:
                 http://172.17.152.127/types/?op1=Ghost => Will return only rows with Types = Ghost
-                http://172.17.152.127/gens/ => Will return entire table regardless of Types
+                http://172.17.152.127/types/ => Will return entire table regardless of Types
