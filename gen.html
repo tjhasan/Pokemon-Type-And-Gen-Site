@@ -42,7 +42,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
       function btnClick(){<!--The JSON object depends on the query string which is generated via the submited form -->
-      $.getJSON("http://172.17.152.115/gens/?op1="+$('#op1').val(), processData);
+      $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
       document.getElementById("post").innerHTML = "";<!--This clears the #post div for the new information -->
       }
 
