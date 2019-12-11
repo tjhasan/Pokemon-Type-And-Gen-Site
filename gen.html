@@ -2,41 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Final Project</title>
   </head>
 
   <body>
-    <a href="index.html">Home</a>
-    <!--Form to select generation to view-->
-    <form>
-      <label>Choose A Generation:</label>
-      <select id="op1">
-        <option value="1">Generation 1</option>
-        <option value="2">Generation 2</option>
-        <option value="3">Generation 3</option>
-        <option value="4">Generation 4</option>
-        <option value="5">Generation 5</option>
-        <option value="6">Generation 6</option>
-        <option value="7">Generation 7</option>
-        <option value="8">Generation 8</option>
-      </select>
-      <input type="button" value="Submit" onclick="btnClick()">  
-    </form>
-    
-    <div id="post">
+
+    <div id="text">
+        <!--Form to select generation to view-->
+<div class="container">
+      <h1 class="text-white-50">Generation Selector</h1>
+      <p class="text-white text-center">Select an option from below!</p>   
+      <div class="row" style="position:top">
+	<label class="text-white">Choose A Generation:</label>
+	<form>
+	  <select id="op1">
+            <option value="1">Generation 1</option>
+            <option value="2">Generation 2</option>
+            <option value="3">Generation 3</option>
+            <option value="4">Generation 4</option>
+            <option value="5">Generation 5</option>            
+	    <option value="6">Generation 6</option>
+            <option value="7">Generation 7</option>
+            <option value="8">Generation 8</option>
+	  </select>
+	  <input type="button" value="Submit" onclick="btnClick()">	
+	</form>
+      </div>
+      <div class="row"> 
+	<div id="post">
+	</div>
+      </div>
     </div>
+    <a href="index.html"><img src="return.png" alt="pages" id="top-margin"></img></a>
+
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-      function btnClick(){<!--Sends request containing generation from user's submission-->
-         $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
-         document.getElementById("post").innerHTML = "";<!--This clears the #post div for the new information -->
+      function btnClick(){<!--The JSON object depends on the query string which is generated via the submited form -->
+      $.getJSON("http://172.17.152.127/gens/?op1="+$('#op1').val(), processData);
+      document.getElementById("post").innerHTML = "";<!--This clears the #post div for the new information -->
       }
 
       function processData(result){
-         $.each(result, function(i, item){<!--Gets the image of the generation that the user submitted-->
-            $("#post").append(["<img src="+item.GameImage+">"]); <!--Images are hosted locally-->
-         })
+      $.each(result, function(i, item){<!--Gets the image of the generation that the user submitted-->
+      $("#post").append(["<img src="+item.GameImage+">"]); <!--Images are hosted locally-->
+      })
       }
     </script>
   </body>

@@ -1,0 +1,44 @@
+body{
+    background-color: #080808 !important;
+}
+#text{
+    margin-top: 7%;
+    margin-bottom:1%;
+    text-align:center;
+}
+
+.container{
+    background-color: #101010;
+    height:50vh;
+    display:flex;
+    align-content:center;
+    align-items:center;
+    justify-content: center;
+    flex-direction:column;
+}
+
+#white-bg{
+    background: white;
+    width: 200px;
+    height: 35px;
+
+}
+#top-margin{
+    text-align:center;
+}
+
+img[alt*="pages"]{
+    height:100px;
+    width:150px;
+}
+
+img[alt*="home"]{
+    width: 550px;
+}
+
+img[src*="Pokemon"]{
+    position: bottom;
+    height:250px;
+    width: 200px;
+    padding: 10px;
+}
